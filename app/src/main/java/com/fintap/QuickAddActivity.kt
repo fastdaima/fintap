@@ -21,6 +21,9 @@ class QuickAddActivity : Activity() {
     // Non-zero when opened by a back double-tap. Its outcome is the misfire label:
     // "saved" = real use, "dismissed" = possible misfire (or a test).
     private var fireId = 0L
+    // One popup = at most one insert. A hardware/IME Enter fires the Done action on key-down AND key-up,
+    // and Save can be double-pressed; both arrive before finish() takes effect.
+    private var saved = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +64,9 @@ class QuickAddActivity : Activity() {
     }
 
     private fun save() {
+        if (saved) return
         val r = form.read() ?: return
+        saved = true
         Db.get(this).insert(r.first, r.second, System.currentTimeMillis())
         reportOutcome("saved")
         Toast.makeText(this, "Saved ${r.first} ${formatPaise(r.second)}", Toast.LENGTH_SHORT).show()
@@ -70,7 +75,13 @@ class QuickAddActivity : Activity() {
 
     override fun onStop() {
         super.onStop()
-        // Cancel, back, tap outside, or switching away all land here without a save.
+        if (saved || isFinishing) {
+            reportOutcome(if (saved) "saved" else "dismissed")
+            return
+        }
+        // Covered by something else (incoming call, notification tap, home). A half-typed expense
+        // survives; an empty popup is dropped so it doesn't come back stale on the next launch.
+        if (form.nameField.text.isNotEmpty() || form.priceField.text.isNotEmpty()) return
         reportOutcome("dismissed")
         finish()
     }

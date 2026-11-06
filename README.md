@@ -28,6 +28,8 @@ Requires Android 10 or newer.
 
 Off by default. To turn it on: open finTap → side menu → **Back tap (experimental)** → **Open Accessibility settings** → **finTap back tap** → On.
 
+"Clear storage" for finTap in Android settings also switches back tap off; turn it on again the same way.
+
 If the switch is greyed out with "Restricted setting": go to **Settings → Apps → finTap → ⋮ (top right) → Allow restricted settings**, then try again. Android blocks accessibility services for apps installed outside the Play Store until you allow this.
 
 **Why an accessibility service?** Android only lets an app open a screen from the background in a few cases, and a system-bound accessibility service is one of them. finTap's service subscribes to no accessibility events and cannot read your screen. It only listens to the motion sensor.

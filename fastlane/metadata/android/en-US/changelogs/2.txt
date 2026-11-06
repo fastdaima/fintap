@@ -1,0 +1,3 @@
+- Fix: pressing Enter (or Save twice quickly) in the add popup could save the same expense twice.
+- Fix: an incoming call or notification no longer throws away a half-typed expense.
+- Store screenshots added.

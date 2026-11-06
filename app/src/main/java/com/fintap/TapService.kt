@@ -124,6 +124,8 @@ class TapService : AccessibilityService(), SensorEventListener {
         val s = accel ?: return
         if (listening) return
         detector.reset()
+        rawCount = 0 // snapshots must not splice in samples from a previous session
+        rawHead = 0
         listening = sensors.registerListener(this, s, SAMPLE_US, BATCH_US)
         Log.i(TAG, "listen=$listening")
     }
