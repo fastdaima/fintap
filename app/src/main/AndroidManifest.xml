@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Android 12+ caps sensors at 200 Hz without this; taps need 400 Hz. -->
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="finTap"
+        android:theme="@style/Main">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Second launcher entry. Point Pixel Quick Tap (back double-tap) at "finTap Add". -->
+        <activity
+            android:name=".QuickAddActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_add"
+            android:label="finTap Add"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.fintap.quickadd"
+            android:theme="@style/QuickAdd"
+            android:windowSoftInputMode="stateAlwaysVisible|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".TapService"
+            android:exported="true"
+            android:label="finTap back tap (experimental)"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/tap_service" />
+        </service>
+    </application>
+</manifest>

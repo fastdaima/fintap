@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="tap_service_desc">Experimental. Double-tap the back of the phone to add an expense. Uses the motion sensor only while the screen is on and unlocked. Reads nothing on screen.</string>
+</resources>

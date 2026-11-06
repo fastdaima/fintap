@@ -1,0 +1,1 @@
+Add an expense in 2 seconds. Day, week, month totals. Offline, no tracking.

@@ -1,0 +1,10 @@
+<p>finTap is a fast, private expense tracker.</p>
+<ul>
+<li><b>Add fast:</b> a small popup with the keyboard already up: name, price, done.</li>
+<li><b>Dashboard:</b> totals for today, this week and this month, plus today's entries.</li>
+<li><b>Detailed lists</b> from the side menu. Tap any entry to edit or delete it.</li>
+<li><b>Two launcher icons:</b> "finTap" for the dashboard, "finTap Add" straight to the add popup.</li>
+<li><b>Private:</b> no internet permission, no accounts, no analytics. Data stays on the phone.</li>
+<li>Amounts in ₹ with Indian digit grouping.</li>
+</ul>
+<p><b>Back tap (experimental, off by default):</b> double-tap the back of the phone to open the add popup. It uses an accessibility service only because Android lets such services open a screen from the background. The service subscribes to no accessibility events and cannot read the screen. It reads the motion sensor only while the phone is unlocked and the screen is on. Tuned on one phone model, so it may miss taps or misfire on others.</p>

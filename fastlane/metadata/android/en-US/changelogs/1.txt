@@ -1,0 +1,1 @@
+First release: quick add popup, day/week/month dashboard, detailed lists with edit and delete, experimental back double-tap (off by default).
